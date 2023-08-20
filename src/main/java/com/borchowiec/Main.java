@@ -1,12 +1,16 @@
 package com.borchowiec;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.borchowiec.ioc.IocContainer;
+import com.borchowiec.terminal.Terminal;
 
 public class Main {
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) {
-        logger.info("Hello world!");
+    public static void main(String[] args) throws InterruptedException {
+        IocContainer iocContainer = IocContainer.getInstance();
+
+        Terminal terminal = iocContainer.getBean(Terminal.class);
+        terminal.printInformationScreen();
+        terminal.clear();
+        terminal.printInformationScreen();
     }
 }
