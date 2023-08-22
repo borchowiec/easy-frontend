@@ -5,7 +5,7 @@ import com.borchowiec.terminal.Terminal;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         IocContainer iocContainer = IocContainer.getInstance();
 
         Terminal terminal = iocContainer.getBean(Terminal.class);
