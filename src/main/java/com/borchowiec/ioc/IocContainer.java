@@ -1,6 +1,7 @@
 package com.borchowiec.ioc;
 
 import com.borchowiec.project.ProjectStructureInitializer;
+import com.borchowiec.project.SourceCompiler;
 import com.borchowiec.terminal.Terminal;
 
 import java.util.Collections;
@@ -25,6 +26,7 @@ public class IocContainer {
 
         beans.put(Terminal.class, Terminal.getInstance());
         beans.put(ProjectStructureInitializer.class, ProjectStructureInitializer.getInstance());
+        beans.put(SourceCompiler.class, SourceCompiler.getInstance());
 
         return Collections.synchronizedMap(Collections.unmodifiableMap(beans));
     }
