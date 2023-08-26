@@ -8,6 +8,7 @@ public class Properties {
     public static final String INIT_STRUCTURE_DIR_NAME = "init-structure";
     public static final String SOURCE_DIR = PROJECT_DIR + "/src";
     public static final String BUILD_DIR = PROJECT_DIR + "/build";
+    public static final int SERVER_PORT = 8080;
 
     private static String getProjectDir() {
         try {

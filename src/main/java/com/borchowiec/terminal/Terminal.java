@@ -1,5 +1,6 @@
 package com.borchowiec.terminal;
 
+import com.borchowiec.Properties;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,9 +11,8 @@ public abstract class Terminal {
     }
 
     public void printInformationScreen() {
-        // todo get real port
         log.info("""
-                         Website is ready! http://localhost:8080
+                         Website is ready! http://localhost:""" + Properties.SERVER_PORT + """
                                                      
                          CTRL + C to exit
                          Enter to refresh

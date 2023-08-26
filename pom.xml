@@ -14,10 +14,17 @@
         <slf4j.version>1.7.32</slf4j.version>
         <logback.version>1.2.6</logback.version>
         <apache-commons.version>2.13.0</apache-commons.version>
+        <nanohttpd.version>2.3.1</nanohttpd.version>
     </properties>
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.nanohttpd</groupId>
+            <artifactId>nanohttpd</artifactId>
+            <version>${nanohttpd.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
