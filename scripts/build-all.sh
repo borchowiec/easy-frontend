@@ -21,5 +21,5 @@ cp "$TARGET_DIR/${ARTIFACT_NAME}-jar-with-dependencies.jar" "$PACKAGES_DIR/${ART
 echo "#############################################################"
 echo "#### Building native image for linux x64"
 echo "#############################################################"
-docker build -t easy-frontend-build-linux-x64 "$DOCKER_DIR/linux/x64"
+docker build --load -t easy-frontend-build-linux-x64 "$DOCKER_DIR/linux/x64"
 docker run --rm -v "$BASE_DIR:/build" -e POSTFIX=linux-x64 easy-frontend-build-linux-x64
