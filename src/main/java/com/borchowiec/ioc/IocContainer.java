@@ -1,7 +1,9 @@
 package com.borchowiec.ioc;
 
+import com.borchowiec.project.FileWatcher;
 import com.borchowiec.project.ProjectStructureInitializer;
 import com.borchowiec.project.SourceCompiler;
+import com.borchowiec.project.SourceRecompilationAwaiter;
 import com.borchowiec.terminal.Terminal;
 
 import java.util.Collections;
@@ -9,24 +11,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class IocContainer {
-    private static final IocContainer iocContainer = new IocContainer();
+    private static IocContainer iocContainer;
 
-    private final Map<Class, Object> beans;
+    private Map<Class, Object> beans;
 
-    private IocContainer() {
-        this.beans = getBeans();
-    }
+    private IocContainer() {}
 
     public static IocContainer getInstance() {
+        if (iocContainer == null) {
+            iocContainer = new IocContainer();
+            iocContainer.init();
+        }
         return iocContainer;
     }
 
-    private Map<Class, Object> getBeans() {
-        Map<Class, Object> beans = new HashMap<>();
+    private void init() {
+        this.beans = getBeans();
+    }
 
-        beans.put(Terminal.class, Terminal.getInstance());
-        beans.put(ProjectStructureInitializer.class, ProjectStructureInitializer.getInstance());
-        beans.put(SourceCompiler.class, SourceCompiler.getInstance());
+    private Map<Class, Object> getBeans() {
+        this.beans = new HashMap<>();
+
+        this.beans.put(Terminal.class, Terminal.getInstance());
+        this.beans.put(ProjectStructureInitializer.class, ProjectStructureInitializer.getInstance());
+        this.beans.put(SourceCompiler.class, SourceCompiler.getInstance());
+        this.beans.put(FileWatcher.class, FileWatcher.getInstance());
+        this.beans.put(SourceRecompilationAwaiter.class, SourceRecompilationAwaiter.getInstance());
 
         return Collections.synchronizedMap(Collections.unmodifiableMap(beans));
     }

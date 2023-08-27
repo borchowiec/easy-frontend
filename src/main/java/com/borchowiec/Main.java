@@ -3,6 +3,7 @@ package com.borchowiec;
 import com.borchowiec.ioc.IocContainer;
 import com.borchowiec.project.ProjectStructureInitializer;
 import com.borchowiec.project.SourceCompiler;
+import com.borchowiec.project.SourceRecompilationAwaiter;
 import com.borchowiec.server.SimpleHttpServer;
 import com.borchowiec.terminal.Terminal;
 import lombok.SneakyThrows;
@@ -16,6 +17,7 @@ public class Main {
         Terminal terminal = iocContainer.getBean(Terminal.class);
         ProjectStructureInitializer projectStructureInitializer = iocContainer.getBean(ProjectStructureInitializer.class);
         SourceCompiler sourceCompiler = iocContainer.getBean(SourceCompiler.class);
+        SourceRecompilationAwaiter sourceRecompilationAwaiter = iocContainer.getBean(SourceRecompilationAwaiter.class);
         new SimpleHttpServer(Properties.SERVER_PORT, Properties.BUILD_DIR).start();
 
         projectStructureInitializer.initializeProjectStructure();
@@ -26,7 +28,7 @@ public class Main {
             sourceCompiler.recompileSources();
             terminal.clear();
             terminal.printInformationScreen();
-            terminal.waitForAnyKey();
+            sourceRecompilationAwaiter.waitUntilSourceRecompilationIsNeeded();
         }
     }
 }
