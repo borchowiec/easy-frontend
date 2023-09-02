@@ -4,6 +4,7 @@ import com.borchowiec.project.FileWatcher;
 import com.borchowiec.project.ProjectStructureInitializer;
 import com.borchowiec.project.SourceCompiler;
 import com.borchowiec.project.SourceRecompilationAwaiter;
+import com.borchowiec.tag.TagService;
 import com.borchowiec.terminal.Terminal;
 
 import java.util.Collections;
@@ -36,6 +37,7 @@ public class IocContainer {
         this.beans.put(ProjectStructureInitializer.class, ProjectStructureInitializer.getInstance());
         this.beans.put(SourceCompiler.class, SourceCompiler.getInstance());
         this.beans.put(FileWatcher.class, FileWatcher.getInstance());
+        this.beans.put(TagService.class, TagService.getInstance());
         this.beans.put(SourceRecompilationAwaiter.class, SourceRecompilationAwaiter.getInstance());
 
         return Collections.synchronizedMap(Collections.unmodifiableMap(beans));

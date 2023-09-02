@@ -10,6 +10,10 @@ public class Properties {
     public static final String BUILD_DIR = PROJECT_DIR + "/build";
     public static final int SERVER_PORT = 8080;
 
+    public static final String TAG_PREFIX = "@{";
+    public static final String TAG_POSTFIX = "}@";
+    public static final String TAG_SEPARATOR = ":";
+
     private static String getProjectDir() {
         try {
             File jarFile = new File(Properties.class.getProtectionDomain().getCodeSource().getLocation()

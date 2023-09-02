@@ -1,6 +1,7 @@
 package com.borchowiec.project;
 
 import com.borchowiec.Properties;
+import com.borchowiec.tag.TagService;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 
@@ -13,6 +14,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 class SourceCompilerImpl implements SourceCompiler {
+    private final TagService tagService = TagService.getInstance();
+
     @SneakyThrows
     @Override
     public void recompileSources() {
@@ -42,7 +45,7 @@ class SourceCompilerImpl implements SourceCompiler {
                  BufferedWriter writer = Files.newBufferedWriter(targetFile)) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    writer.write(line);
+                    writer.write(tagService.compileTags(line));
                     writer.newLine();
                 }
             }
