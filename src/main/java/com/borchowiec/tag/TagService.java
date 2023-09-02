@@ -33,12 +33,12 @@ public class TagService {
         for (TextPart textPart : textParts) {
             if (textPart.getType() == TextPart.Type.TAG) {
                 String tagContent = compileString(textPart.getChildren());
-                String[] split = tagContent.split(TAG_SEPARATOR);
-                if (split.length != 2) {
+                int tagSeparatorIndex = tagContent.indexOf(TAG_SEPARATOR);
+                if (tagSeparatorIndex == -1) {
                     stringBuilder.append(tagContent);
                 } else {
-                    String tagName = split[0];
-                    String tagValue = split[1];
+                    String tagName = tagContent.substring(0, tagSeparatorIndex);
+                    String tagValue = tagContent.substring(tagSeparatorIndex + 1);
                     String rawTag = tagHandlerFactory.getHandler(tagName)
                                                      .handle(textPart.getContent(), tagName, tagValue);
                     if (textPart.getContent().equals(rawTag)) {

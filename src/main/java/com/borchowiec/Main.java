@@ -12,12 +12,6 @@ public class Main {
 
     @SneakyThrows
     public static void main(String[] args) {
-//        try (Context context = Context.create("js")) {
-//            Value parse = context.eval("js", "'test'");
-//            System.out.println(parse.asString());
-//        }
-
-
         IocContainer iocContainer = IocContainer.getInstance();
 
         Terminal terminal = iocContainer.getBean(Terminal.class);

@@ -11,6 +11,7 @@ public class TagHandlerFactory {
     public TagHandler getHandler(String tagName) {
         return switch (tagName) {
             case "template" -> new TemplateHandler();
+            case "js-inline", "js-file"  -> new JsHandler();
             default -> new DefaultHandler();
         };
     }
