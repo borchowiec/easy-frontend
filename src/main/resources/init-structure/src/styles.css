@@ -1,4 +1,4 @@
-body, h1, h2, h3, h4, h5, h6 {
+body {
     margin: 0;
     padding: 0;
 }
@@ -8,8 +8,8 @@ body {
     background-color: #f0f0f0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #333;
+h1, h2, h3, h4, h5, h6, p {
+    color: @{global:color}@;
     padding: 20px;
 }
 

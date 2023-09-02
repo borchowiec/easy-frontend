@@ -17,10 +17,17 @@
         <nanohttpd.version>2.3.1</nanohttpd.version>
         <junit.version>5.8.1</junit.version>
         <graalvm.version>23.0.1</graalvm.version>
+        <gson.version>2.10.1</gson.version>
     </properties>
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.graalvm.sdk</groupId>
             <artifactId>graal-sdk</artifactId>

@@ -10,6 +10,7 @@ public class Properties {
     public static final String BUILD_DIR = PROJECT_DIR + "/build";
     public static final String TEMPLATES_DIR = PROJECT_DIR + "/templates";
     public static final String UTILS_DIR = PROJECT_DIR + "/utils";
+    public static final String GLOBAL_VARIABLES_SCRIPT_PATH = UTILS_DIR + "/global.js";
     public static final int SERVER_PORT = 8080;
 
     public static final String TAG_PREFIX = "@{";
