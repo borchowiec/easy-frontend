@@ -9,8 +9,10 @@ RUN apt-get update -y && \
 RUN curl -L "$download_url" -o "$download_path" && \
     tar -xf "$download_path" -C "/" && \
     rm "$download_path" && \
-    mv /graalvm* "/graalvm" && \
-    /graalvm/bin/gu install native-image
+    mv /graalvm* "/graalvm"
+
+RUN /graalvm/bin/gu install native-image && \
+    /graalvm/bin/gu install js
 
 WORKDIR /build
 

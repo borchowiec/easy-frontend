@@ -15,8 +15,8 @@ echo "#### Building jar"
 echo "#############################################################"
 mvn clean package
 mkdir -p "$PACKAGES_DIR"
-ARTIFACT_NAME=`ls "${TARGET_DIR}" | grep .jar | grep -v with-dependencies | sed 's/.\{4\}$//'`
-cp "$TARGET_DIR/${ARTIFACT_NAME}-jar-with-dependencies.jar" "$PACKAGES_DIR/${ARTIFACT_NAME}.jar"
+ARTIFACT_NAME=`ls "${TARGET_DIR}" | grep .jar | grep -v graalvm | grep -v original | sed 's/.\{4\}$//'`
+cp "$TARGET_DIR/${ARTIFACT_NAME}.jar" "$PACKAGES_DIR/${ARTIFACT_NAME}.jar"
 
 echo "#############################################################"
 echo "#### Building native image for linux x64"
