@@ -38,7 +38,9 @@ class SourceCompilerImpl implements SourceCompiler {
     private void copyFilesWithReplacedTags(List<Path> sourceFiles) {
         Path sourceDir = Paths.get(Properties.SOURCE_DIR);
         for (Path sourceFile : sourceFiles) {
-            Path targetFile = Paths.get(Properties.BUILD_DIR, sourceDir.relativize(sourceFile).toString());
+            String relativeSourceFilePath = tagService.compileTags(sourceDir.relativize(sourceFile).toString());
+            Path targetFile = Paths.get(Properties.BUILD_DIR, relativeSourceFilePath);
+
             Files.createDirectories(targetFile.getParent());
 
             try (BufferedReader reader = Files.newBufferedReader(sourceFile);
