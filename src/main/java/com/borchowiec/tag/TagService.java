@@ -1,5 +1,8 @@
 package com.borchowiec.tag;
 
+import com.borchowiec.ioc.IocContainer;
+import com.borchowiec.tag.handler.TagHandlerFactory;
+
 import java.util.List;
 
 import static com.borchowiec.Properties.TAG_SEPARATOR;
@@ -7,13 +10,18 @@ import static com.borchowiec.Properties.TAG_SEPARATOR;
 public class TagService {
     private static TagService tagService = new TagService();
 
-    private TextDecomposer textDecomposer = new TextDecomposer();
+    private final TextDecomposer textDecomposer;
+    private final TagHandlerFactory tagHandlerFactory;
 
     public static TagService getInstance() {
         return tagService;
     }
 
-    private TagService() {}
+    private TagService() {
+        IocContainer instance = IocContainer.getInstance();
+        this.textDecomposer = new TextDecomposer();
+        this.tagHandlerFactory = instance.getBean(TagHandlerFactory.class);
+    }
 
     public String compileTags(String rawString) {
         List<TextPart> textParts = textDecomposer.decomposeString(rawString);
@@ -31,7 +39,13 @@ public class TagService {
                 } else {
                     String tagName = split[0];
                     String tagValue = split[1];
-                    stringBuilder.append(tagName).append("_").append(tagValue);
+                    String rawTag = tagHandlerFactory.getHandler(tagName)
+                                                     .handle(textPart.getContent(), tagName, tagValue);
+                    if (textPart.getContent().equals(rawTag)) {
+                        stringBuilder.append(tagContent);
+                    } else {
+                        stringBuilder.append(compileTags(rawTag));
+                    }
                 }
             } else {
                 stringBuilder.append(textPart.getContent());

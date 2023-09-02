@@ -5,6 +5,7 @@ import com.borchowiec.project.ProjectStructureInitializer;
 import com.borchowiec.project.SourceCompiler;
 import com.borchowiec.project.SourceRecompilationAwaiter;
 import com.borchowiec.tag.TagService;
+import com.borchowiec.tag.handler.TagHandlerFactory;
 import com.borchowiec.terminal.Terminal;
 
 import java.util.Collections;
@@ -33,6 +34,7 @@ public class IocContainer {
     private Map<Class, Object> getBeans() {
         this.beans = new HashMap<>();
 
+        this.beans.put(TagHandlerFactory.class, TagHandlerFactory.getInstance());
         this.beans.put(Terminal.class, Terminal.getInstance());
         this.beans.put(ProjectStructureInitializer.class, ProjectStructureInitializer.getInstance());
         this.beans.put(SourceCompiler.class, SourceCompiler.getInstance());
