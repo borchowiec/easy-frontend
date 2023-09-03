@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy frontend</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Easy Frontend</h1>
+    <p>Easy Frontend is a purpose-built tool designed specifically for straightforward web projects. While it may not
+        boast the complexity and innovation seen in advanced frameworks like React, it excels at simplifying the
+        development process for simple HTML websites.</p>
+
+    <p>Easy Frontend simplifies web development with tags that make it easy to add dynamic elements to your HTML
+        code. These tags, such as JS tags and global variables, streamline text generation and data management for
+        simple projects.</p>
+
+    <h3>Source</h3>
+    <pre>
+        &lt;div>
+            &lt;p>&commat;{js-inline:2+2}&commat;&lt;/p>
+            &lt;p>&commat;{js-file:my-utils:exampleFunction()}&commat;&lt;/p>
+            &lt;p>&commat;{template:example.html}&commat;&lt;/p>
+            &lt;p>&commat;{global:globalVariable}&commat;&lt;/p>
+        &lt;/div>
+    </pre>
+
+    <h3>Build</h3>
+    <pre>
+        &lt;div>
+            &lt;p>4&lt;/p>
+            &lt;p>exampleFunction() result&lt;/p>
+            &lt;p>example text from <b>example.html</b> template&lt;/p>
+            &lt;p>global variable value&lt;/p>
+        &lt;/div>
+    </pre>
+
+    <p>Easy Frontend offers a built-in server with auto-refreshing feature for quickly previewing your website during
+        development</p>
+
+    <h1>Project structure</h1>
+    <ul>
+        <li><b>build</b> - Files with recompiled tags.</li>
+        <li><b>templates</b> - Template files used by <i>template</i> tag.</li>
+        <li><b>utils</b> - Contains all scripts that can be used by <i>js-file</i> tag.</li>
+        <li><b>utils/global.js</b> - Contains global object that is used to store global variables used in <i>global</i>
+            tag.
+        </li>
+    </ul>
+
+    <h1>Commands</h1>
+    <div class="command">
+        <h2>Start - [start]</h2>
+        <p>Starts development server</p>
+        <pre>
+            --port=&lt;PORT - DEFAULT VALUE: 8080> - Port on which server will be started
+            --dont-watch-files - Disables watching for file changes
+            --help - Display help
+        </pre>
+    </div>
+    <div class="command">
+        <h2>Initialize project structure - [init]</h2>
+        <p>Creates example project structure without running development server</p>
+        <pre>
+            --help - Display help
+        </pre>
+    </div>
+    <div class="command">
+        <h2>Build project - [build]</h2>
+        <p>Recompiles sources without running development server</p>
+        <pre>
+            --help - Display help
+        </pre>
+    </div>
+    <div class="command">
+        <h2>Version - [version, --version, -v]</h2>
+        <p>Prints version</p>
+        <pre>
+            --help - Display help
+        </pre>
+    </div>
+    <div class="command">
+        <h2>Help - [help, --help, -h]</h2>
+        <p>Displays help screen</p>
+        <pre>
+            --help - Display help
+        </pre>
+    </div>
+    <h1>Tags</h1>
+    <p>Tags are used to dynamically generate text.</p>
+
+    <pre>
+        Tag structure
+        &commat;{tag-name:tag-parameters}&commat;
+
+        Example
+        &commat;{template:template-file.js}&commat;
+
+        Tags can also be nested
+        &commat;{js-inline:exampleFunction(&commat;{global:randomNumberVariable}&commat;)}&commat;
+    </pre>
+
+    <p>Tags can also be used in file names</p>
+    <pre>
+        Before
+        script-&commat;{global:buildVersion}&commat;.js
+
+        After
+        script-@{global:buildVersion}@.js
+    </pre>
+
+    <h2>Templates</h2>
+    <p>Used to copy content from files placed in the <b>templates</b> directory. Tags can also be used in the template
+        file.</p>
+    <h3>Structure</h3>
+    <pre>
+        &commat;{template:<i>template/file/path.html</i>}&commat;
+    </pre>
+    <h3>Source</h3>
+    <pre>
+        &commat;{template:template.html}&commat;
+        &commat;{template:templateWithSubtemplate.html}&commat;
+    </pre>
+    <h3>Build</h3>
+    <pre>
+        @{template:template.html}@
+        @{template:templateWithSubtemplate.html}@
+    </pre>
+
+    <h2>JS</h2>
+    <p>Used to generate text using inline scripts or scripts from javascript files from <b>utils</b> directory.</p>
+    <p>The script is evaluated every time when it's used.</p>
+    <h3>Structure</h3>
+    <pre>
+        &commat;{js-inline:<i>inline script</i>}&commat;
+        &commat;{js-file:<i>script file name</i>:<i>script</i>}&commat;
+    </pre>
+    <h3>Source</h3>
+    <pre>
+        &commat;{js-inline:2+2}&commat;
+        &commat;{js-file:example:exampleFunction()}&commat;
+        &commat;{js-file:example:exampleVariable}&commat;
+    </pre>
+    <h3>Build</h3>
+    <pre>
+        @{js-inline:2+2}@
+        @{js-file:example:exampleFunction()}@
+        @{js-file:example:exampleVariable}@
+    </pre>
+
+    <h2>Global Variables</h2>
+    <p>Used to store constant variables in the <i>global</i> object in the <b>utils/global.js</b> file.</p>
+    <p>The variables are evaluated only once, before every recompilation, so the value will always be the same.</p>
+    <h3>Structure</h3>
+    <pre>
+        &commat;{global:<i>variable name</i>}&commat;
+    </pre>
+    <h3>Source</h3>
+    <pre>
+        &commat;{global:buildVersion}&commat;
+        &commat;{global:buildDate}&commat;
+    </pre>
+    <h3>Build</h3>
+    <pre>
+        @{global:buildVersion}@
+        @{global:buildDate}@
+    </pre>
+</div>
+</body>
+</html>
