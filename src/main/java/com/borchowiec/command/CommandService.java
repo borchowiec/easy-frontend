@@ -17,6 +17,7 @@ public class CommandService {
         this.commands = List.of(new StartCommand(),
                                 new InitCommand(),
                                 new BuildCommand(),
+                                new VersionCommand(),
                                 helpCommand)
                             .stream()
                             .map(HelpCommandDecorator::new)
