@@ -22,17 +22,15 @@ class SourceRecompilationAwaiterImpl implements SourceRecompilationAwaiter {
 
     @SneakyThrows
     @Override
-    public void waitUntilSourceRecompilationIsNeeded() {
-        CompletableFuture.anyOf(getAwaiters()).get();
-    }
-
-    private CompletableFuture<Void>[] getAwaiters() {
+    public void waitUntilSourceRecompilationIsNeeded(boolean shouldWatchFileChanges) {
         List<CompletableFuture<Void>> awaiters = new LinkedList<>();
 
-        awaiters.add(CompletableFuture.runAsync(this::waitForAnyFileChangesInSourceDirectory));
+        if (shouldWatchFileChanges) {
+            awaiters.add(CompletableFuture.runAsync(this::waitForAnyFileChangesInSourceDirectory));
+        }
         awaiters.add(CompletableFuture.runAsync(this::terminalWait));
 
-        return awaiters.toArray(new CompletableFuture[0]);
+        CompletableFuture.anyOf(awaiters.toArray(new CompletableFuture[0])).get();
     }
 
     private void waitForAnyFileChangesInSourceDirectory() {

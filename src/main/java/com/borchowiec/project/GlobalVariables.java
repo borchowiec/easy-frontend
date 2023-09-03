@@ -2,7 +2,6 @@ package com.borchowiec.project;
 
 import com.borchowiec.Properties;
 import com.borchowiec.ioc.IocContainer;
-import com.borchowiec.js.EvaluationException;
 import com.borchowiec.js.JsEngine;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;

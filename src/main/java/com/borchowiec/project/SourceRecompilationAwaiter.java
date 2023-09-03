@@ -5,5 +5,5 @@ public interface SourceRecompilationAwaiter {
         return new SourceRecompilationAwaiterImpl();
     }
 
-    void waitUntilSourceRecompilationIsNeeded();
+    void waitUntilSourceRecompilationIsNeeded(boolean shouldWatchFileChanges);
 }

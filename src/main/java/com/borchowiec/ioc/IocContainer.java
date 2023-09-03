@@ -1,5 +1,6 @@
 package com.borchowiec.ioc;
 
+import com.borchowiec.command.CommandService;
 import com.borchowiec.js.JsEngine;
 import com.borchowiec.project.FileWatcher;
 import com.borchowiec.project.GlobalVariables;
@@ -45,6 +46,7 @@ public class IocContainer {
         this.beans.put(FileWatcher.class, FileWatcher.getInstance());
         this.beans.put(TagService.class, TagService.getInstance());
         this.beans.put(SourceRecompilationAwaiter.class, SourceRecompilationAwaiter.getInstance());
+        this.beans.put(CommandService.class, CommandService.getInstance());
 
         return Collections.synchronizedMap(Collections.unmodifiableMap(beans));
     }
