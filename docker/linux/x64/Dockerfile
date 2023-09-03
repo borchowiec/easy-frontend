@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:bionic
 
 ARG download_url="https://download.oracle.com/graalvm/17/latest/graalvm-jdk-17_linux-x64_bin.tar.gz"
 ARG download_path="/graalvm.tar.gz"
